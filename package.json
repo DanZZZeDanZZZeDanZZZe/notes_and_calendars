@@ -1,0 +1,44 @@
+{
+  "name": "notes_and_calendars",
+  "version": "1.0.0",
+  "description": "Organizer app",
+  "main": "server.js",
+  "scripts": {
+    "start:dev:client": "PORT=3001 npm run start --prefix client",
+    "start:dev:server": "NODE_ENV=development nodemon server.js",
+    "start:dev": "concurrently --raw \"npm run start:dev:*\"",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "build:client": "npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanZZZeDanZZZeDanZZZe/notes_and_calendars.git"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.9.2",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1"
+  },
+  "author": "Artem Grankin <jyjyjyj3@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanZZZeDanZZZeDanZZZe/notes_and_calendars/issues"
+  },
+  "homepage": "https://github.com/DanZZZeDanZZZeDanZZZe/notes_and_calendars#readme"
+}
