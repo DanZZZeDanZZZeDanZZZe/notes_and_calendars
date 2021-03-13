@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-exports.auth = (req, res, next) => {
+exports.checkAuth = (req, res, next) => {
   if (req.method === 'OPTIONS') {
     return next()
   }
