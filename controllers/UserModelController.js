@@ -21,7 +21,7 @@ class UserModelController {
       const user = await User.findOne({ email })
 
       req.foundData = {
-        availability: !!user,
+        availability: Boolean(user),
         user,
       }
       next()

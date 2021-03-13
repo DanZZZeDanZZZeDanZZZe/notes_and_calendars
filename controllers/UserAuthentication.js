@@ -1,15 +1,18 @@
 const composeMiddlewares = require('../utils/composeMiddlewares')
 const Authentication = require('./Authentication')
 const UserModelController = require('./UserModelController')
+const Validator = require('./Validator')
 
 class UserAuthentication extends Authentication {
   constructor() {
     super()
     this.user = new UserModelController()
+    this.validator = new Validator()
   }
 
   loginUser() {
     return composeMiddlewares([
+      this.validator.processAuthenticationData(),
       this.user.findUser,
       (req, res, next) => {
         try {
@@ -39,6 +42,7 @@ class UserAuthentication extends Authentication {
 
   registerUser() {
     return composeMiddlewares([
+      this.validator.processAuthenticationData(),
       this.user.findUser,
       (req, res, next) => {
         try {
