@@ -28,7 +28,7 @@ const Wrapper = styled.div`
     font-size: 1.2rem;
     word-wrap: break-word;
   }
-  @media only screen and (max-width: ${sizes.SM_SIZE}) {
+  @media only screen and (max-width: ${breakpoints.SM_SIZE}) {
     width: ${sizes.SIDE_MENU_BIG_WIDTH};
     &::after {
       content: '';
