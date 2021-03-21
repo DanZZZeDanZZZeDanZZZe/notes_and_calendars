@@ -14,13 +14,15 @@ class Fetcher {
     new Fetcher(apiBase)
   }
 
-  static async fetch(urlPart, method, data) {
+  static async fetch({ urlPart, method, data, headers }) {
     const url = `/${this.instance.base}/${urlPart}`
 
-    const params = { headers: this.jsonContentHeader, method }
+    const params = {
+      headers: new Headers({ ...this.jsonContentHeader, ...headers }),
+      method,
+    }
     if (method === 'POST' || method === 'PUT')
       params.body = JSON.stringify(data)
-
     const res = await fetch(url, params)
     const json = await res.json()
 
