@@ -21,12 +21,14 @@ class Fetcher {
     if (method === 'POST' || method === 'PUT')
       params.body = JSON.stringify(data)
 
-    return await fetch(url, params).then(async (res) => {
-      if (!res.ok) {
-        throw new Error(`Data retrieval error. Status: ${res.status}`)
-      }
-      return await res.json()
-    })
+    const res = await fetch(url, params)
+    const json = await res.json()
+
+    if (!res.ok) {
+      throw new Error(json.message)
+    }
+
+    return Promise.resolve(json)
   }
 }
 
