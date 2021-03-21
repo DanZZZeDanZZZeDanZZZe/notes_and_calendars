@@ -3,7 +3,7 @@ const User = require('../models/User.model')
 class UserModelController {
   async createUser(req, res, next) {
     try {
-      const { email } = req.body
+      const { email } = req
       const user = new User({ email, password: req.hashedPassword })
 
       await user.save()
@@ -16,8 +16,7 @@ class UserModelController {
 
   async findUser(req, res, next) {
     try {
-      const { email } = req.body
-
+      const { email } = req
       const user = await User.findOne({ email })
 
       req.foundData = {

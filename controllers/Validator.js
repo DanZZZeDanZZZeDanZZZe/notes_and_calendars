@@ -14,6 +14,7 @@ class Validator {
           message,
         })
       }
+      console.log('Data was processed')
       next()
     }
   }

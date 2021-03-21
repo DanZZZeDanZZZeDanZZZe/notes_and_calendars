@@ -13,6 +13,17 @@ class UserAuthentication extends Authentication {
   loginUser() {
     return composeMiddlewares([
       this.validator.processAuthenticationData(),
+      (req, res, next) => {
+        try {
+          req.email = req.body.email
+          next()
+        } catch (e) {
+          console.log(e)
+          res
+            .status(500)
+            .json({ message: 'Something went wrong. Try it again!' })
+        }
+      },
       this.user.findUser,
       (req, res, next) => {
         try {
@@ -41,6 +52,7 @@ class UserAuthentication extends Authentication {
   }
 
   registerUser() {
+    //fix!!!
     return composeMiddlewares([
       this.validator.processAuthenticationData(),
       this.user.findUser,
@@ -68,6 +80,38 @@ class UserAuthentication extends Authentication {
         const RegMessage = `User ${req.body.email} created.`
         console.log(RegMessage)
         res.status(201).json({ message: RegMessage })
+      },
+    ])
+  }
+
+  checkAuth() {
+    return composeMiddlewares([
+      (req, res, next) => {
+        try {
+          req.email = req.params.email
+          next()
+        } catch (e) {
+          console.log(e)
+          res
+            .status(500)
+            .json({ message: 'Something went wrong. Try it again!' })
+        }
+      },
+      super.checkAuth,
+      this.user.findUser,
+      (req, res, next) => {
+        try {
+          if (req.foundData.user.id === req.decoded.userId) {
+            res.status(200).json({ message: 'Succes authorization' })
+          } else {
+            res.status(401).json({ message: 'No authorization' })
+          }
+        } catch (e) {
+          console.log(e)
+          res
+            .status(500)
+            .json({ message: 'Something went wrong. Try it again!' })
+        }
       },
     ])
   }

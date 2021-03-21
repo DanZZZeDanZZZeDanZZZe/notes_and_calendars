@@ -14,18 +14,17 @@ class Authentication {
 
     try {
       const token = req.headers.authorization.split(' ')[1]
-
       if (!token) resNoAuthMessage()
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
-      req.user = decoded
+      req.decoded = decoded
       next()
     } catch (e) {
       resNoAuthMessage()
     }
   }
 
-  async getToken(req, res) {
+  getToken(req, res) {
     try {
       const { userId } = req
 
@@ -57,7 +56,7 @@ class Authentication {
     }
   }
 
-  async hashPassword(req, res, next) {
+  hashPassword(req, res, next) {
     try {
       const { password } = req.body
 
