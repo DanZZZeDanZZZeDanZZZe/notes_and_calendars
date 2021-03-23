@@ -1,13 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { clearData as logout } from '../../redux/authenticationSlice'
 import {
   Wrapper,
   OpeningButton,
   CloseIcon,
+  LogoutIcon,
   OpeningIcon,
-  CloseButton,
   DisappearingWrapper,
   DisappearingOpeningButton,
   Content,
+  ButtonsPanel,
+  Button,
 } from './styled-components.js'
 
 class SideMenu extends React.Component {
@@ -43,9 +47,15 @@ class SideMenu extends React.Component {
     const activeMenu = (
       <>
         <Wrapper>
-          <CloseButton onClick={() => this.closeButtonClickHandler()}>
-            <CloseIcon />
-          </CloseButton>
+          <ButtonsPanel>
+            <Button onClick={() => this.closeButtonClickHandler()}>
+              <CloseIcon />
+            </Button>
+            <Button onClick={() => this.props.logout()}>
+              <LogoutIcon />
+            </Button>
+          </ButtonsPanel>
+
           {contentForMenu}
         </Wrapper>
         <DisappearingOpeningButton disabled>
@@ -58,9 +68,14 @@ class SideMenu extends React.Component {
       <>
         {this.state.touched && (
           <DisappearingWrapper>
-            <CloseButton disabled>
-              <CloseIcon />
-            </CloseButton>
+            <ButtonsPanel>
+              <Button disabled>
+                <CloseIcon />
+              </Button>
+              <Button disabled>
+                <LogoutIcon />
+              </Button>
+            </ButtonsPanel>
             {contentForMenu}
           </DisappearingWrapper>
         )}
@@ -74,4 +89,4 @@ class SideMenu extends React.Component {
   }
 }
 
-export default SideMenu
+export default connect(null, { logout })(SideMenu)

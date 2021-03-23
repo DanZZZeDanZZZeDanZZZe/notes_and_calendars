@@ -44,6 +44,11 @@ export const authenticationSlice = createSlice({
       state.token = action.payload.token
       state.email = action.payload.email
     },
+    clearData: (state) => {
+      state.isAuth = false
+      state.token = null
+      state.email = null
+    },
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
@@ -62,7 +67,7 @@ export const authenticationSlice = createSlice({
 })
 const { actions, reducer } = authenticationSlice
 
-export const { setData } = actions
+export const { setData, clearData } = actions
 
 export { checkAuth, registration, login }
 

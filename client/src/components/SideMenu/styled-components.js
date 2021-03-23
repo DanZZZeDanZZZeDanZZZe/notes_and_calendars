@@ -1,7 +1,12 @@
 import styled, { keyframes } from 'styled-components'
 import { fadeInLeft, fadeIn } from 'react-animations'
-import { IoIosArrowDropright, IoIosCloseCircleOutline } from 'react-icons/io'
+import {
+  IoIosArrowDropright,
+  IoIosCloseCircleOutline,
+  IoMdExit,
+} from 'react-icons/io'
 import constants from '../../constants'
+import StylesKit from '../StylesKit'
 
 const { colors, shadows, breakpoints, sizes } = constants.css
 
@@ -54,24 +59,16 @@ const DisappearingWrapper = styled(Wrapper)`
   animation-fill-mode: forwards;
 `
 
-const CleanedButton = styled.button`
-  padding: 0;
-  border: none;
-  font-style: inherit;
-  color: inherit;
-  background-color: transparent;
-  & {
-    cursor: pointer;
-  }
-`
-
-const Button = styled(CleanedButton)`
+const Button = styled(StylesKit.CleanedButton)`
   width: ${buttonWidth};
   height: 2.5rem;
 `
 
-const CloseButton = styled(Button)`
-  align-self: start;
+const ButtonsPanel = styled.div`
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: ${buttonWidth};
 `
 
 const OpeningButton = styled(Button)`
@@ -88,6 +85,10 @@ const DisappearingOpeningButton = styled(OpeningButton)`
 `
 
 const CloseIcon = styled(IoIosCloseCircleOutline)`
+  width: 2rem;
+  height: 2rem;
+`
+const LogoutIcon = styled(IoMdExit)`
   width: 2rem;
   height: 2rem;
 `
@@ -108,8 +109,9 @@ export {
   Button,
   CloseIcon,
   OpeningIcon,
-  CloseButton,
   OpeningButton,
   DisappearingOpeningButton,
   Content,
+  ButtonsPanel,
+  LogoutIcon,
 }
