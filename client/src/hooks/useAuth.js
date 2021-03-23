@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import LocalStorageService from '../utils/LocalStorageService'
+import localStorageService from '../utils/localStorageService'
 import { setData as setAuthData, checkAuth } from '../redux/authenticationSlice'
 
-const storage = new LocalStorageService()
+const storage = localStorageService
 
 export default function useAuth() {
   const isAuth = useSelector((state) => state.authenticationReducer.isAuth)
@@ -30,6 +30,8 @@ export default function useAuth() {
           ])
         }
       })
+    } else {
+      storage.removeItems(['token', 'email'])
     }
   }, [dispatch, token, email])
 

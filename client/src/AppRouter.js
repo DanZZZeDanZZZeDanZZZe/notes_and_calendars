@@ -3,6 +3,7 @@ import { Switch, Route, Link, Redirect, BrowserRouter } from 'react-router-dom'
 import NavSideMenu from './components/NavSideMenu'
 import useAuth from './hooks/useAuth'
 import LoginPage from './pages/LoginPage'
+import RegistrationPage from './pages/RegistrationPage'
 
 function AppRouter() {
   const isAuth = useAuth()
@@ -29,6 +30,9 @@ function AppRouter() {
           <>
             <Route path="/login">
               <LoginPage />
+            </Route>
+            <Route path="/registration">
+              <RegistrationPage />
             </Route>
             <Route path="/">
               <Redirect to="/login" />
