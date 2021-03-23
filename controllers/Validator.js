@@ -1,5 +1,7 @@
 const { validationResult, check } = require('express-validator')
-const composeMiddlewares = require('../utils/composeMiddlewares')
+const { middlewareTools } = require('../utils/middlewareTools')
+
+const { composeMiddlewares } = middlewareTools()
 
 class Validator {
   createResult() {

@@ -21,7 +21,6 @@ export default function useAuth() {
   useEffect(() => {
     if (token && email) {
       dispatch(checkAuth()).then((res) => {
-        debugger
         if (res?.error) {
           storage.removeItems(['token', 'email'])
         } else {

@@ -1,21 +1,21 @@
 const User = require('../models/User.model')
+const { middlewareTools } = require('../utils/middlewareTools')
+
+const { createMiddleware } = middlewareTools()
 
 class UserModelController {
-  async createUser(req, res, next) {
-    try {
+  createUser() {
+    return async (req, res, next) => {
       const { email } = req
       const user = new User({ email, password: req.hashedPassword })
 
       await user.save()
       next()
-    } catch (e) {
-      console.log(e)
-      res.status(500).json({ message: 'Something went wrong. Try it again!' })
     }
   }
 
-  async findUser(req, res, next) {
-    try {
+  findUser() {
+    return createMiddleware(async (req, res, next) => {
       const { email } = req
       const user = await User.findOne({ email })
 
@@ -24,10 +24,7 @@ class UserModelController {
         user,
       }
       next()
-    } catch (e) {
-      console.log(e)
-      res.status(500).json({ message: 'Something went wrong. Try it again!' })
-    }
+    })
   }
 }
 
