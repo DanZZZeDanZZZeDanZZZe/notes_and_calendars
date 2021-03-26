@@ -56,6 +56,9 @@ export const authenticationSlice = createSlice({
       state.email = action.meta.arg.email
     },
     [login.rejected]: (_, action) => alert(action.error.message),
+    [registration.fulfilled]: (_, action) =>
+      alert(`User ${action.meta.arg.email} was created!`),
+    [registration.rejected]: (_, action) => alert(action.error.message),
     [checkAuth.rejected]: (state, action) => {
       alert(action.error.message)
       clearDataFunction(state)
