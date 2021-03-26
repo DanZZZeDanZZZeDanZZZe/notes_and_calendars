@@ -19,7 +19,8 @@ const Wrapper = styled.main`
 `
 const ContentSpace = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   min-height: 100%;
   max-height: 100%;

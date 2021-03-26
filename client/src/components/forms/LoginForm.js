@@ -3,8 +3,16 @@ import { Legend } from './FormKit/styled-components'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/authenticationSlice'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const { FormMeta, Form, TextField, SubmitButton } = FormKit
+
+const StyledLink = styled(Link)`
+  margin-left: auto;
+  text-decoration: none;
+  color: inherit;
+`
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -27,6 +35,7 @@ const LoginForm = () => {
       }}
     >
       <Form>
+        <StyledLink to="registration">I have no account</StyledLink>
         <Legend>Login</Legend>
         <TextField label="Email" name="email" />
         <TextField label="Password" name="password" type="password" />
