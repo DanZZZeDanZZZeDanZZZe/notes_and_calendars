@@ -1,11 +1,5 @@
-const dotenv = require('dotenv')
-const dotenvExpand = require('dotenv-expand')
-
 const configureDBConnection = require('./utils/configureDBConnection')
 const app = require('./app')
-
-const myEnv = dotenv.config({ path: './config.env' })
-dotenvExpand(myEnv)
 
 const port = process.env.PORT || 3000
 const connectionString = process.env.DATABASE_URL
