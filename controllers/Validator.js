@@ -9,8 +9,8 @@ class Validator {
       const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
-        const message = 'Incorrect data'
-        console.log(message)
+        const message = `Incorrect data`
+        console.log(message, JSON.stringify(errors.array()))
         return res.status(400).json({
           errors: errors.array(),
           message,
